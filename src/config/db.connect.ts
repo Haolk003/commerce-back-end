@@ -5,7 +5,7 @@ const DbConnect = async () => {
     await mongoose.connect(`${process.env.MONGOOSE_KEY}`);
     console.log("Database connected successfully");
   } catch (err) {
-    console.log("Database error");
+    console.log(err);
   }
 };
 export default DbConnect;
