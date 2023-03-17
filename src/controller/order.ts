@@ -193,7 +193,22 @@ const aggOrder = async (req: Request, res: Response, next: NextFunction) => {
         },
       },
     ]).exec();
-    res.status(200).json({ orderDay, orderMonth });
+    const orderAll = await Order.aggregate([
+      {
+        $match: { orderStatus: { $exists: true } },
+      },
+      {
+        $group: {
+          sum_price: { $sum: "$paymentIntent.amount" },
+        },
+      },
+      {
+        $project: {
+          total_orders: 1,
+        },
+      },
+    ]).exec();
+    res.status(200).json({ orderDay, orderMonth, orderAll });
   } catch (err) {
     next(err);
   }
@@ -300,7 +315,6 @@ const totalWeekly = async (req: Request, res: Response, next: NextFunction) => {
     ]).exec();
 
     dayjs.extend(relativeTime);
-    // const range = dayjs(startOfWeek).add(1, "day").format("YYYY-MM-DD");
     let data = [];
     for (let i = 0; i < 7; i++) {
       const find = aggregate.find(
@@ -313,7 +327,6 @@ const totalWeekly = async (req: Request, res: Response, next: NextFunction) => {
         totalOrder: find ? find.totalOrder : 0,
       });
     }
-    console.log(data);
     res.status(200).json(data);
   } catch (err) {
     next(err);

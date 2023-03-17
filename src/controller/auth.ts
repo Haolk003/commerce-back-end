@@ -105,7 +105,7 @@ const LoginAdmin = async (req: Request, res: Response, next: NextFunction) => {
       wishList,
       isBlocked,
       ...details
-    } = updateRefreshToken._doc;
+    } = updateRefreshToken;
 
     res.status(200).json({
       ...details,
