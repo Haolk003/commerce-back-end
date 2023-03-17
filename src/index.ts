@@ -27,15 +27,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: [`${process.env.FRONTEND_URL}`, "http://localhost:5173"],
+    origin: [`${process.env.FRONTEND_URL}`, `${process.env.ADMIN_URL}`],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
 DbConnect();
-
 const port = process.env.PORT || 5000;
-
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
