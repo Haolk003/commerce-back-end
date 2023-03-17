@@ -20,7 +20,7 @@ const DbConnect = () => __awaiter(void 0, void 0, void 0, function* () {
     };
     try {
         mongoose_1.default.set("strictQuery", false);
-        yield mongoose_1.default.connect(`mongodb://127.0.0.1:27017/commerce`);
+        yield mongoose_1.default.connect(`mongodb+srv://haolk003:01653186782az@cluster0.ayevk90.mongodb.net/ecommerce-app?retryWrites=true&w=majority`);
         console.log("Database connected successfully");
     }
     catch (err) {

@@ -6,7 +6,9 @@ const DbConnect = async () => {
   };
   try {
     mongoose.set("strictQuery", false);
-    await mongoose.connect(`mongodb://127.0.0.1:27017/commerce`);
+    await mongoose.connect(
+      `mongodb+srv://haolk003:01653186782az@cluster0.ayevk90.mongodb.net/ecommerce-app?retryWrites=true&w=majority`
+    );
     console.log("Database connected successfully");
   } catch (err) {
     console.log(err);
