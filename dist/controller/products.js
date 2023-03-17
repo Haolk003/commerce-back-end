@@ -106,12 +106,14 @@ const getAllProductPublic = (req, res, next) => __awaiter(void 0, void 0, void 0
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
         let query;
         if (title !== "" && title) {
-            const objectSign = Object.assign({ title: { $regex: title, $options: "i" } }, JSON.parse(queryStr), { isPublic: true });
+            const objectSign = Object.assign({ title: { $regex: title, $options: "i" } }, { isPublic: true });
             query = product_1.default.find(objectSign);
-            console.log(title);
+        }
+        else if (queryStr) {
+            query = product_1.default.find(Object.assign(JSON.parse(queryStr), { isPublic: true }));
         }
         else {
-            query = product_1.default.find(Object.assign(JSON.parse(queryStr), { isPublic: true }));
+            query = product_1.default.find();
         }
         if (req.query.sort) {
             const sortBy = req.query.sort.split(",").join(" ");
@@ -137,6 +139,7 @@ const getAllProductPublic = (req, res, next) => __awaiter(void 0, void 0, void 0
             throw (0, errorHandle_1.createError)(500, "This Page does not exist");
         }
         const product = yield query;
+        console.log(product);
         res.status(200).json({ products: product, productCount: productCount });
     }
     catch (err) {

@@ -127,15 +127,15 @@ const getAllProductPublic = async (
     if (title !== "" && title) {
       const objectSign = Object.assign(
         { title: { $regex: title, $options: "i" } },
-        JSON.parse(queryStr),
         { isPublic: true }
       );
       query = Product.find(objectSign);
-      console.log(title);
-    } else {
+    } else if (queryStr) {
       query = Product.find(
         Object.assign(JSON.parse(queryStr), { isPublic: true })
       );
+    } else {
+      query = Product.find();
     }
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
@@ -161,7 +161,7 @@ const getAllProductPublic = async (
     }
 
     const product = await query;
-
+    console.log(product);
     res.status(200).json({ products: product, productCount: productCount });
   } catch (err: any) {
     next(err);

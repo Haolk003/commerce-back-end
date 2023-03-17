@@ -49,7 +49,7 @@ app.use((0, cookie_parser_1.default)());
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:5174", "http://localhost:5173"],
+    origin: [`${process.env.FRONTEND_URL}`, "http://localhost:5173"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }));
