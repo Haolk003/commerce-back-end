@@ -16,7 +16,7 @@ exports.generateToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generateToken = ({ id, isAdmin }) => __awaiter(void 0, void 0, void 0, function* () {
     return jsonwebtoken_1.default.sign({ id, isAdmin }, `${process.env.JWT_KEY}`, {
-        expiresIn: "15m",
+        expiresIn: "60m",
     });
 });
 exports.generateToken = generateToken;

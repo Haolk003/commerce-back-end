@@ -197,12 +197,14 @@ const aggOrder = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
             },
             {
                 $group: {
+                    _id: null,
                     sum_price: { $sum: "$paymentIntent.amount" },
                 },
             },
             {
                 $project: {
-                    total_orders: 1,
+                    sum_price: 1,
+                    _id: 1,
                 },
             },
         ]).exec();

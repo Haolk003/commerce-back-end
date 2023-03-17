@@ -199,12 +199,14 @@ const aggOrder = async (req: Request, res: Response, next: NextFunction) => {
       },
       {
         $group: {
+          _id: null,
           sum_price: { $sum: "$paymentIntent.amount" },
         },
       },
       {
         $project: {
-          total_orders: 1,
+          sum_price: 1,
+          _id: 1,
         },
       },
     ]).exec();

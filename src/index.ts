@@ -27,7 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: [`${process.env.FRONTEND_URL}`, `${process.env.ADMIN_URL}`],
+    origin: [
+      `${process.env.FRONTEND_URL}`,
+      `${process.env.ADMIN_URL}`,
+      "http://localhost:5173",
+    ],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })

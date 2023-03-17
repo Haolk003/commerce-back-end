@@ -113,7 +113,7 @@ const LoginAdmin = async (req: Request, res: Response, next: NextFunction) => {
         id: findAdmin._id,
         isAdmin: findAdmin.isAdmin,
       }),
-      expiryTime: Date.now() + 15 * 60 * 1000,
+      expiryTime: Date.now() + 60 * 60 * 1000,
     });
   } catch (err) {
     next(err);

@@ -111,7 +111,7 @@ const LoginAdmin = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         res.status(200).json(Object.assign(Object.assign({}, details), { token: yield (0, jwt_token_1.generateToken)({
                 id: findAdmin._id,
                 isAdmin: findAdmin.isAdmin,
-            }), expiryTime: Date.now() + 15 * 60 * 1000 }));
+            }), expiryTime: Date.now() + 60 * 60 * 1000 }));
     }
     catch (err) {
         next(err);
