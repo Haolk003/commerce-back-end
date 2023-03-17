@@ -91,7 +91,7 @@ const LoginAdmin = async (req: Request, res: Response, next: NextFunction) => {
         refreshToken: refreshTokens,
       },
       { new: true }
-    );
+    ).select("firstName lastName email ");
     res.cookie("refreshToken", refreshTokens, {
       httpOnly: true,
       // maxAge: 72 * 60 * 60 * 1000,
@@ -105,7 +105,7 @@ const LoginAdmin = async (req: Request, res: Response, next: NextFunction) => {
       wishList,
       isBlocked,
       ...details
-    } = updateRefreshToken;
+    } = updateRefreshToken._doc;
 
     res.status(200).json({
       ...details,
