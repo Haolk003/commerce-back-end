@@ -159,18 +159,6 @@ const hanleRefreshToken = async (
 };
 const logout = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const cookie = req.cookies;
-    console.log(cookie);
-    if (!cookie.refreshToken)
-      throw createError(400, "No refresh token in Cookies");
-    const refreshToken = cookie.refreshToken;
-    const findUser = await User.findOne({ refreshToken });
-    if (!findUser) {
-      console.log("cook");
-      res.clearCookie("refreshToken");
-      return res.status(204).json("logouted");
-    }
-    await User.findOneAndUpdate({ refreshToken }, { refreshToken: "" });
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
