@@ -209,7 +209,7 @@ const rating = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
             return total + (num === null || num === void 0 ? void 0 : num.star);
         }, 0)) || 0;
         const updateProduct = yield product_1.default.findByIdAndUpdate(proId, {
-            totalRating: (sumRating / ratingLength).toFixed(1),
+            totalRating: sumRating / ratingLength,
         }, { new: true }).populate("ratings.postedBy");
         res.status(200).json(updateProduct);
     }

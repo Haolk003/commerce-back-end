@@ -52,7 +52,7 @@ const productImgResize = (req, res, next) => __awaiter(void 0, void 0, void 0, f
             .jpeg({ quality: 90 })
             .toFile(`dist/public/images/products/${file.filename}`);
         fs_1.default.unlinkSync(`dist/public/images/${file.filename}`);
-        return (file.path = `E:\\coder\\Ecommerce-app\\api\\dist\\public\\images\\products\\${file.filename}`);
+        return (file.path = `dist/public/images/products/${file.filename}`);
     })));
     console.log(req.files);
     next();

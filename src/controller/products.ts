@@ -254,7 +254,7 @@ const rating = async (req: Request, res: Response, next: NextFunction) => {
     const updateProduct = await Product.findByIdAndUpdate(
       proId,
       {
-        totalRating: (sumRating / ratingLength).toFixed(1),
+        totalRating: sumRating / ratingLength,
       },
       { new: true }
     ).populate("ratings.postedBy");
